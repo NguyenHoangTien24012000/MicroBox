@@ -1,0 +1,1 @@
+(()=>{var e={910:e=>{e.exports=class{name;age;color;constructor(e,o,r){this.name=e,this.age=o,this.color=r}eat(){console.log("eat",this.name)}sleep(){console.log("sleep")}}}},o={};!function r(s){var t=o[s];if(void 0!==t)return t.exports;var a=o[s]={exports:{}};return e[s](a,a.exports,r),a.exports}(910)})();

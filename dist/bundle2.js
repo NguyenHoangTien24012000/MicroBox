@@ -1,0 +1,1 @@
+(()=>{var e={910:e=>{e.exports=class{name;age;color;constructor(e,o,s){this.name=e,this.age=o,this.color=s}eat(){console.log("eat",this.name)}sleep(){console.log("sleep")}}}},o={};function s(t){var r=o[t];if(void 0!==r)return r.exports;var n=o[t]={exports:{}};return e[t](n,n.exports,s),n.exports}(()=>{const e=new(s(910))("meo",1,"yellow");window.Meo=e})()})();
