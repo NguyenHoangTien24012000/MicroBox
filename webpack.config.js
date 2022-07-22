@@ -10,7 +10,7 @@ const config = {
     entry: './build.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename : "test.js"
+        filename: "test.js"
     },
     plugins: [
         // Add your plugins here
@@ -18,6 +18,11 @@ const config = {
     ],
     module: {
         rules: [
+            { 
+                test: /\.txt$/,
+                use: 'raw-loader' 
+            },
+
             {
                 test: /\.(js|jsx)$/i,
                 loader: "babel-loader",
@@ -45,14 +50,14 @@ const config = {
                 test: /\.html$/i,
                 loader: "html-loader",
             },
-          
+
 
 
             // Add your rules for custom modules here
             // Learn more about loaders from https://webpack.js.org/loaders/
         ],
     },
-    mode : 'production'
+    mode: 'production'
 };
 
 module.exports = config;

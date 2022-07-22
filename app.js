@@ -1,79 +1,59 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 8080
 const fs = require('fs');
 const webpack = require('webpack');
 const config = require('./webpack.config')
-
-
-
-const BoxRecomend = require('./parent')
-app.get('/', (req, res) => {
-  const data = req.body
-  console.log("data", req)
-  res.send("Alo")
-})
-
-
-
+const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors())
 
-app.post('/post-test', (req, res) => {
+app.post('/send-data', (req, res, next) => {
+  var { layout, css } = req.body;
 
-  const compiler = webpack(config);
+  // console.log("test", layout, css)
 
-  compiler.run((err, stats) => {
-    console.log("Success!");
+  var test = `const Recommend = require('./parent')
+  var html = '${layout}'
+  var css = '${css}'
+  const box = new Recommend(html, css);
+  box.render()`
 
-    compiler.close((closeErr) => {
-      if (closeErr) {
-        console.log(closeErr);
-      }
-    });
-  });
-  // var { html, css } = req.body;
+  try {
+    fs.writeFileSync('./css.txt', css)
+  } catch (err) {
+    console.error("err", err);
+  }
 
-  // var test = `const Recommend = require('./parent')
-  // var html = '${html}'
-  // var css = '${css}'
-  // const box = new Recommend(html, css);
-  // box.render()`
+  try {
+    fs.writeFileSync('./html.txt', layout)
+  } catch (err) {
+    console.error("err", err);
+  }
 
-  // fs.writeFileSync('./build.js', test)
+  const fileBuild = `${Date.now()}_recommend.js`
 
-  // const a = fs.readFileSync('./build.js', "utf-8");
-  // console.log("testse", a)
+  config.entry = './build.js';
+  config.output = {
+    path: path.resolve(__dirname, 'dist'),
+    filename: fileBuild
+  }
 
-
-  res.sendStatus(200);
-});
-
-
-app.post("/build", (req, res) => {
+    console.log("config", config)
 
   webpack([
-    { entry: './build.js', output: { filename: 'bundle1.js' } },
-
+    config
   ], (err, stats) => { // [Stats Object](#stats-object)
     process.stdout.write(stats.toString() + '\n');
   })
-  res.end()
-})
-
-// const compiler = webpack(config);
-// compiler.run((err, stats) => {
-//   console.log("Success!");
-
-//   compiler.close((closeErr) => {
-//     if (closeErr) {
-//       console.log(closeErr);
-//     }
-//   });
-// });
 
 
+
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
