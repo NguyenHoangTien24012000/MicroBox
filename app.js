@@ -13,45 +13,55 @@ app.use(bodyParser.json());
 app.use(cors())
 
 app.post('/send-data', (req, res, next) => {
-  var { layout, css } = req.body;
+  // var { layout, css } = req.body;
 
-  // console.log("test", layout, css)
+  // var myPromise1 = new Promise((resolve, reject) => {
+  //   fs.writeFile('./css.css', css, (err) => {
+  //     if (err) {
+  //       console.log("err", err)
+  //     } else {
+  //       resolve();
+  //     }
+  //   })
+  // })
 
-  var test = `const Recommend = require('./parent')
-  var html = '${layout}'
-  var css = '${css}'
-  const box = new Recommend(html, css);
-  box.render()`
+  // var myPromise2 = new Promise((resolve, reject) => {
+  //   fs.writeFile('./html.html', layout, (err) => {
+  //     if (err) {
+  //       console.log("err", err)
+  //     } else {
+  //       resolve();
+  //     }
+  //   })
+  // })
 
-  try {
-    fs.writeFileSync('./css.txt', css)
-  } catch (err) {
-    console.error("err", err);
-  }
+  // Promise.all([myPromise1, myPromise2]).then(() => {
+  //   const fileBuild = `${Date.now()}_recommend.js`
 
-  try {
-    fs.writeFileSync('./html.txt', layout)
-  } catch (err) {
-    console.error("err", err);
-  }
+  //   config.entry = './build.js';
+  //   config.output = {
+  //     path: path.resolve(__dirname, 'dist'),
+  //     filename: fileBuild
+  //   }
 
+  //   webpack([
+  //     config
+  //   ], (err, stats) => { // [Stats Object](#stats-object)
+  //     process.stdout.write(stats.toString() + '\n');
+  //   })
+  // });
   const fileBuild = `${Date.now()}_recommend.js`
-
   config.entry = './build.js';
   config.output = {
     path: path.resolve(__dirname, 'dist'),
     filename: fileBuild
   }
 
-    console.log("config", config)
-
   webpack([
     config
   ], (err, stats) => { // [Stats Object](#stats-object)
     process.stdout.write(stats.toString() + '\n');
   })
-
-
 
 });
 
