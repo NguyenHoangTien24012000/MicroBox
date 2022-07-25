@@ -1,0 +1,1 @@
+https://rec.aiservice.vn/recengine/recgate/api/v1/recommender?customerid=kenh14web&boxid=4&uid=&itemid=&deviceid=&template=&offset=&refresh=&vieweditems=&limit=5

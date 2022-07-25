@@ -24,7 +24,7 @@ const config = {
             },
             {
                 test: /\.css$/i,
-                use: [stylesHandler, "css-loader"],
+                use: ["css-loader"],
             },
             {
                 test: /\.s[ac]ss$/i,

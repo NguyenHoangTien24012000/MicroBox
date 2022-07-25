@@ -27,7 +27,8 @@
     "raw-loader": "^4.0.2",
     "style-loader": "^3.3.1",
     "uglify-template-string-loader": "^1.1.1",
-    "webpack": "^5.73.0"
+    "webpack": "^5.73.0",
+    "lib-core-js": "git+https://lab.admicro.vn/corejs/lib.git"
   },
   "devDependencies": {
     "@webpack-cli/generators": "^2.5.0",
