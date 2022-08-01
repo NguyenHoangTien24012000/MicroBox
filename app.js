@@ -8,7 +8,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const recommend = require('./src/BuildBox/Recommend/ClassRecommend')
-
+const connection = require('./src/utils/connectDB')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -91,12 +91,18 @@ app.post('/send-data', (req, res, next) => {
     ], (err, stats) => { // [Stats Object](#stats-object)
       process.stdout.write(stats.toString() + '\n');
     })
+  }).catch((err)=>{
+    console.log(err)
   });
   return res.status(200).json({
     message: 'ok'
   })
 
 });
+
+app.get('/get-data',(req,res,next) =>{
+  
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
