@@ -52,7 +52,7 @@ const config = {
             // Learn more about loaders from https://webpack.js.org/loaders/
         ],
     },
-    mode: 'production'
+    mode: isProduction
 };
 
 module.exports = config;

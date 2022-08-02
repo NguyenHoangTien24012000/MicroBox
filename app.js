@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const port = 8080
 const fs = require('fs');
 const webpack = require('webpack');
 const config = require('./webpack.config')
@@ -8,102 +7,38 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const recommend = require('./src/BuildBox/Recommend/ClassRecommend')
-const connection = require('./src/utils/connectDB')
+const userRoutes = require('./src/routes/user')
+const sequelize = require('./src/util/connectDB')
+require('dotenv').config();
 
+//Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors())
+app.use(express.static(path.join(__dirname, 'src', 'public')))
 
-app.post('/send-data', (req, res, next) => {
-  var { layout, item, css, api, lengthItem, idBox } = req.body;
-  // console.log("test", layout, item, css, api, lengthItem, idBox)
-  var myPromise1 = new Promise((resolve, reject) => {
-    fs.writeFile('./css.css', css, (err) => {
-      if (err) {
-        console.log("err", err)
-      } else {
-        resolve();
-      }
-    })
-  })
+//Router user
+app.use('/user', userRoutes)
 
-  var myPromise2 = new Promise((resolve, reject) => {
-    fs.writeFile('./html.html', layout, (err) => {
-      if (err) {
-        console.log("err", err)
-      } else {
-        resolve();
-      }
-    })
-  })
-
-  var myPromise3 = new Promise((resolve, reject) => {
-    fs.writeFile('./item.html', item, (err) => {
-      if (err) {
-        console.log("err", err)
-      } else {
-        resolve();
-      }
-    })
-  })
-
-  var myPromise4 = new Promise((resolve, reject) => {
-    fs.writeFile('api.txt', api, (err) => {
-      if (err) {
-        console.log("err", err)
-      } else {
-        resolve();
-      }
-    })
-  })
-
-  var myPromise5 = new Promise((resolve, reject) => {
-    fs.writeFile('lengthItem.txt', lengthItem, (err) => {
-      if (err) {
-        console.log("err", err)
-      } else {
-        resolve();
-      }
-    })
-  })
-
-  var myPromise6 = new Promise((resolve, reject) => {
-    fs.writeFile('idBox.txt', idBox, (err) => {
-      if (err) {
-        console.log("err", err)
-      } else {
-        resolve();
-      }
-    })
-  })
-
-  Promise.all([myPromise1, myPromise2, myPromise3, myPromise4, myPromise5, myPromise6]).then(() => {
-    const fileBuild = `${Date.now()}_recommend.js`
-
-    config.entry = './build.js';
-    config.output = {
-      path: path.resolve(__dirname, 'dist'),
-      filename: fileBuild
-    }
-
-    webpack([
-      config
-    ], (err, stats) => { // [Stats Object](#stats-object)
-      process.stdout.write(stats.toString() + '\n');
-    })
-  }).catch((err)=>{
-    console.log(err)
-  });
-  return res.status(200).json({
-    message: 'ok'
-  })
-
-});
-
-app.get('/get-data',(req,res,next) =>{
-  
+app.use((req, res, next) => {
+  console.log(path.join(__dirname, 'src', 'public'))
 })
 
+
+//Page not found
+app.use((req, res) => {
+  res.status(404).send('<h1>Page not found!!</h1>')
+})
+
+// sequelize.sync().then(result => {
+//   console.log("test")
+
+
+// }).catch(err => {
+//   console.log("err")
+// });
+let port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
