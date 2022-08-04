@@ -16,11 +16,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      phoneNumber:{
+      phoneNumber: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      roleid:{
+      roleid: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -33,6 +33,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    await queryInterface.addColumn('Users', 'password', { type: Sequelize.STRING, allowNull: false });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Users');
