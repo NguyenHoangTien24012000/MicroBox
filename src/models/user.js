@@ -17,11 +17,11 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     phoneNumber: DataTypes.STRING,
-    // password : DataTypes.STRING,
-    roleid: DataTypes.STRING
+    password : DataTypes.STRING,
+    roleid: DataTypes.BOOLEAN            
   }, {
     sequelize,
     modelName: 'User',
   });
   return User;
-};dule.exports = User;
+};

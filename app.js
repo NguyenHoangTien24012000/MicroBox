@@ -11,32 +11,23 @@ const userRoutes = require('./src/routes/user')
 const sequelize = require('./src/util/connectDB')
 require('dotenv').config();
 
+
 //Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors())
+
+//Static file
 app.use(express.static(path.join(__dirname, 'src', 'public')))
 
 //Router user
 app.use('/user', userRoutes)
-
-app.use((req, res, next) => {
-  console.log(path.join(__dirname, 'src', 'public'))
-})
-
 
 //Page not found
 app.use((req, res) => {
   res.status(404).send('<h1>Page not found!!</h1>')
 })
 
-// sequelize.sync().then(result => {
-//   console.log("test")
-
-
-// }).catch(err => {
-//   console.log("err")
-// });
 let port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
