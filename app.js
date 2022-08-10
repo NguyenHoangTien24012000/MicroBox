@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const recommend = require('./src/BuildBox/Recommend/ClassRecommend')
 const userRoutes = require('./src/routes/user')
+const testRoutes = require('./src/routes/test')
 const sequelize = require('./src/util/connectDB')
 require('dotenv').config();
 
@@ -22,6 +23,9 @@ app.use(express.static(path.join(__dirname, 'src', 'public')))
 
 //Router user
 app.use('/user', userRoutes)
+
+//Router Test
+app.use('/test', testRoutes)
 
 //Page not found
 app.use((req, res) => {

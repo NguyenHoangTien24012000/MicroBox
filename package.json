@@ -24,6 +24,7 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "html-loader": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
     "lib-core-js": "git+https://lab.admicro.vn/corejs/lib.git",
     "mysql2": "^2.3.3",
     "raw-loader": "^4.0.2",

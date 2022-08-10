@@ -1,39 +1,50 @@
 const db = require('../models/index')
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
-exports.register = async (req, res, next) => {
-    console.log(req.body)
+exports.register = (req, res, next) => {
+    // console.log(req.param)
     let { name, email, phoneNumber, password } = req.body;
     let roleid = 0;
 
-    try {
-        await db.User.create({
-            name: name,
-            email: email,
-            phoneNumber: phoneNumber,
-            password: password,
-            roleid: roleid
-        })
-        res.status(200).send("Register Success!")
-    } catch (error) {
-        res.status(401).send(error)
-    }
+    bcrypt.hash(password, saltRounds, async function (err, hash) {
+        try {
+            await db.User.create({
+                name: name,
+                email: email,
+                phoneNumber: phoneNumber,
+                password: hash,
+                roleid: roleid
+            })
+            res.status(200).send("Register Success!")
+        } catch (error) {
+            res.status(400).send(error)
+        }
+    });
 };
 
-exports.login = async (req, res, next) =>{
+exports.login = async (req, res, next) => {
     console.log(req.body)
-    let {email, password} = req.body;
+    let { email, password } = req.body;
+
     try {
         const user = await db.User.findAll({
-            where:{
-                email : email,
-                password : password
+            where: {
+                email: email
             }
         })
-        console.log("user", user[0].dataValues)
-        res.status(200).send('Login success!')
+        let hash = user[0].dataValues.password
+        bcrypt.compare(password, hash, function (err, result) {
+            if (result) {
+                res.status(200).send('Login success!')
+            } else {
+                res.status(400).send('Password invalid!')
+            }
+        });
     } catch (error) {
-        res.status(401).send(error)
+        res.status(400).send(error)
     }
+
 }
 
 
