@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "hoangtien",
+    "password": "hoangtien14",
     "database": "micro_box",
     "host": "127.0.0.1",
     "dialect": "mysql"

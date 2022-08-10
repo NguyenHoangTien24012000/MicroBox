@@ -6,7 +6,8 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        unique: true
       },
       name: {
         type: Sequelize.STRING,
@@ -15,10 +16,12 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true
       },
       phoneNumber: {
         type: Sequelize.STRING,
         allowNull: false,
+        unique: true
       },
       roleid: {
         type: Sequelize.BOOLEAN,
