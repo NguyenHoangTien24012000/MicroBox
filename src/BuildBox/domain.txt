@@ -1,0 +1,71 @@
+var url=(window.relatedNews && window.relatedNews.popupUrlData && window.relatedNews.popupUrlData()) || document.URL;
+	var arrItemid=/([\d]+).chn|([\d]+)rf[\d]+.chn/.exec(url+'');
+	var itemid='';
+	if(arrItemid){
+		itemid=arrItemid[1]?arrItemid[1]:arrItemid[2];
+	}
+	console.log('recommend url lightbox', url);
+	let $=document.querySelector.bind(document);
+	var strDev=(document.domain+'').indexOf('cnnd.vn')!=-1?'':'/prod';
+	var urlAI=`https://rec.aiservice.vn/recengine${strDev}/recgate/api/v1/recommender?customerid=afamilyweb&boxid=2&uid=&itemid=${itemid}&deviceid=${uid}&template=2&limit=10`;
+
+
+let uid=getuid();
+	page=page?page:0;
+	var offset=page*30;
+	if(offset>100){
+		//bindCss('.news__recommend--more{display:none !important;}');
+		return false;
+	}
+	let dmn=document.domain+'';
+	//https://rec.aiservice.vn/recengine/recgate/api/v1/recommender?customerid=genkweb&boxid=1&uid=&itemid=&deviceid=&template=1&limit=10
+	//https://genk.vn/samsung-dem-tinh-nang-camera-cua-galaxy-s22-den-dien-thoai-cu-hon-20220316015722012.chn
+	var param=paramInfoAdm.getParam();
+	var arrItemid=/([\d]+).chn/.exec(document.URL+'');
+	var itemid='';
+	var checkPopup=false;
+	if(window._ADM_Channel && window._ADM_Channel.indexOf('detail')!=-1){
+		checkPopup=true;
+	}
+	if(arrItemid){
+		itemid=arrItemid[1];
+	}
+
+	let $=document.querySelector.bind(document);
+	var vieweditems='';
+	var strDev=(document.domain+'').indexOf('cnnd.vn')!=-1?'':'/prod';
+	var urlAI=`https://rec.aiservice.vn/recengine${strDev}/recgate/api/v1/recommender?customerid=afamilyweb&boxid=1&uid=&itemid=${itemid}&deviceid=${uid}&template=&offset=${offset}&limit=30&refesh=&vieweditems=`;
+
+
+
+
+    https://rec.aiservice.vn/recengine${strDev}/recgate/api/v1/recommender?customerid=cafefweb&boxid=2&uid=&itemid=${itemid}&deviceid=${uid}&template=2&limit=10
+
+
+
+    	var urlAI = (refresh, arrIdBox) => {
+		var prod = ''
+		if (document.URL.includes("https://kenh14.vn")) {
+			prod = '/prod'
+		}
+		var api = `https://rec.aiservice.vn/recengine${prod}/recgate/api/v1/recommender?customerid=kenh14web&boxid=4&uid=&itemid=${itemid}&deviceid=${uid}&template=&offset=&refresh=${refresh == 0 ? '' : 1}&vieweditems=[${arrIdBox}]&limit=5`
+		return api
+	}
+
+
+
+	var urlAI=`https://rec.aiservice.vn/recengine${strDev}/recgate/api/v1/recommender?customerid=cafefweb&boxid=1&uid=&itemid=${itemid}&deviceid=${uid}&template=&offset=${offset}&limit=30&refesh=&vieweditems=`;
+
+    var urlAI=`https://rec.aiservice.vn/recengine${strDev}/recgate/api/v1/recommender?customerid=genkweb&boxid=2&uid=&itemid=${itemid}&deviceid=${uid}&template=2&limit=10`;
+
+
+    var urlAI=`https://rec.aiservice.vn/recengine${strDev}/recgate/api/v1/recommender?customerid=cafebizweb&boxid=4&uid=&itemid=${itemid}&deviceid=${uid}&template=&offset=&limit=4`;
+
+
+    var urlAI=`https://rec.aiservice.vn/recengine${strDev}/recgate/api/v1/recommender?customerid=genkweb&boxid=4&uid=&itemid=${itemid}&deviceid=${uid}&template=1&limit=4`;
+
+
+    var urlAI=`https://rec.aiservice.vn/recengine/recgate/api/v1/recommender?customerid=genkweb&boxid=4&uid=${uid}&itemid=${itemid}&deviceid=&template=1&limit=4`;
+
+
+    var urlAI=`https://rec.aiservice.vn/recengine${strDev}/recgate/api/v1/recommender?customerid=genkweb&boxid=1&uid=&itemid=${itemid}&deviceid=${uid}&template=&offset=${offset}&limit=30&refesh=&vieweditems=`;

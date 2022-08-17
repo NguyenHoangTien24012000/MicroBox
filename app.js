@@ -9,7 +9,7 @@ const path = require('path');
 const recommend = require('./src/BuildBox/Recommend/ClassRecommend')
 const userRoutes = require('./src/routes/user')
 const testRoutes = require('./src/routes/test');
-const configDatabase = require('./src/config/configDatabase');
+const configDatabase = require('./src/models/index');
 require('dotenv').config();
 const sequelize = require('./src/util/connectDB')
 
@@ -18,13 +18,15 @@ const sequelize = require('./src/util/connectDB')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors())
+
+//config Database
 app.use(configDatabase)
 
 //Static file
 app.use(express.static(path.join(__dirname, 'src', 'public')))
 
 //Router user
-app.use('/user', userRoutes)
+app.use('/', userRoutes)
 
 // //Router Test
 app.use('/test', testRoutes)
@@ -33,15 +35,6 @@ app.use('/test', testRoutes)
 app.use((req, res) => {
   res.status(404).send('<h1>Page not found!!</h1>')
 })
-
-sequelize
-  .sync()
-  .then(result => {
-    // console.log(result)
-  })
-  .catch(error => {
-    console.log(error)
-  })
 
 let port = process.env.PORT || 8080;
 app.listen(port, () => {

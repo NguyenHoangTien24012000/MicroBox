@@ -3,7 +3,7 @@ const sequelize = require('../util/connectDB');
 const Sequelize  = require('sequelize');
 
 
-const User = sequelize.define('User', {
+const Domain = sequelize.define('Domain', {
   // Model attributes are defined here
   id: {
     allowNull: false,
@@ -16,23 +16,13 @@ const User = sequelize.define('User', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  email: {
+  value:{
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true
   },
-  phoneNumber: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true
-  },
-  roleid: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false
-  },
-  password:{
-    type: Sequelize.STRING,
-    allowNull: false
+  idTypeBox:{
+    type: Sequelize.INTEGER,
+    allowNull: true,
   },
   createdAt: {
     allowNull: false,
@@ -44,4 +34,4 @@ const User = sequelize.define('User', {
   }
 });
 
-module.exports = User
+module.exports = Domain

@@ -1,8 +1,8 @@
-const Product = require('../models/user')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
+const User = require('../models/user')
 
 
 exports.register = (req, res, next) => {
@@ -10,7 +10,7 @@ exports.register = (req, res, next) => {
     let roleid = 0;
     console.log("{ name, email, phoneNumber, password }", { name, email, phoneNumber, password })
     bcrypt.hash(password, saltRounds).then(function (hash) {
-        return db.User.create({
+        return User.create({
             name: name,
             email: email,
             phoneNumber: phoneNumber,
@@ -19,8 +19,7 @@ exports.register = (req, res, next) => {
         })
     }).then((result) => {
         res.status(200).json({
-            message: "Register Success!!",
-            result: result
+            message: "Register Success!!"
         })
     }).catch((error) => {
         res.status(400).json({
