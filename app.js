@@ -7,29 +7,42 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const recommend = require('./src/BuildBox/Recommend/ClassRecommend')
-const userRoutes = require('./src/routes/user')
+const userRoutes = require('./src/routes/routeUser')
 const testRoutes = require('./src/routes/test');
-const configDatabase = require('./src/models/index');
-require('dotenv').config();
-const sequelize = require('./src/util/connectDB')
+const typeBoxRoutes = require('./src/routes/routeTypeBox')
+const domainRoutes = require('./src/routes/routeDomain')
+const updateDatabaseRoutes = require('./src/routes/routeUpdateDatabase')
+const algorithmRoutes = require('./src/routes/routeAlgorithm')
 
+// ENV
+require('dotenv').config();
 
 //Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors())
 
-//config Database
-app.use(configDatabase)
-
 //Static file
 app.use(express.static(path.join(__dirname, 'src', 'public')))
 
 //Router user
-app.use('/', userRoutes)
+app.use(userRoutes)
 
-// //Router Test
-app.use('/test', testRoutes)
+//Router Test
+app.use(testRoutes)
+
+//Router TypeBox
+app.use(typeBoxRoutes)
+
+//Router Domain
+app.use(domainRoutes)
+
+//Router Algorithms
+app.use(algorithmRoutes)
+
+//config Database, router test
+app.use(updateDatabaseRoutes)
+
 
 //Page not found
 app.use((req, res) => {
@@ -37,6 +50,7 @@ app.use((req, res) => {
 })
 
 let port = process.env.PORT || 8080;
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

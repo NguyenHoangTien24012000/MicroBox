@@ -54,11 +54,11 @@ const Recommend = sequelize.define('Recommend', {
   },
   offSetPage:{
     allowNull: true,
-    type:Sequelize.NUMBER
+    type:Sequelize.INTEGER
   },
   numberPage:{
     allowNull: true,
-    type:Sequelize.NUMBER
+    type:Sequelize.INTEGER
   },
   createdAt: {
     allowNull: false,

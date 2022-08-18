@@ -8,8 +8,8 @@ router.post('/demo', controllerTest.development)
 
 require('dotenv').config()
 
-const createAuth = require("../middleware/authentication")
+const checkAuth = require("../middleware/authentication")
 
-router.get('/token', createAuth ,controllerTest.testToken)
+router.get('/token', checkAuth ,controllerTest.testToken)
 
 module.exports = router

@@ -8,7 +8,7 @@ const rootDir = require('../util/path')
 
 const createAuth = require('../middleware/authentication')
 
-const controllerUser = require('../controller/user')
+const controllerUser = require('../controller/controllerUser')
 
 router.post('/register', controllerUser.register)
 

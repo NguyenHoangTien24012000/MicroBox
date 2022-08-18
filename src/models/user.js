@@ -1,6 +1,6 @@
 const sequelize = require('../util/connectDB');
 
-const Sequelize  = require('sequelize');
+const Sequelize = require('sequelize');
 
 
 const User = sequelize.define('User', {
@@ -27,10 +27,10 @@ const User = sequelize.define('User', {
     unique: true
   },
   roleid: {
-    type: Sequelize.BOOLEAN,
+    type: Sequelize.INTEGER,
     allowNull: false
   },
-  password:{
+  password: {
     type: Sequelize.STRING,
     allowNull: false
   },

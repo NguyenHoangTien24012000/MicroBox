@@ -1,7 +1,12 @@
 const jwt = require('jsonwebtoken')
 require("dotenv").config()
-function createAuth(req, res, next) {
+function checkAuth(req, res, next) {
     const authenTokenHeader = req.headers['authorization']
+    if (!authenTokenHeader) {
+        res.status(401).json({
+            message: "Access Token invalid!"
+        })
+    }
     const token = authenTokenHeader.split(' ')[1]
     if (!token) {
         res.status(401).json({
@@ -11,14 +16,16 @@ function createAuth(req, res, next) {
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (error, data) => {
         if (error) {
             res.status(401).json({
-                message: "Access Token invalid!"
+                message: "Access Token invalid!",
+                error: error
             })
         }
-        else{
-            res.status(200)
+        else {
+            // res.json(data)
+            req.idUser = data.idUser;
             next();
         }
     })
 }
 
-module.exports = createAuth;
+module.exports = checkAuth;

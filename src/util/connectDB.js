@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize');
+require('dotenv').config()
 
-const sequelize = new Sequelize('micro_box', 'root', '', {
+
+const sequelize = new Sequelize(process.env.DATABASE, process.env.ROOT, process.env.PASSDATABASE, {
   dialect: 'mysql',
   host: 'localhost'
 });
