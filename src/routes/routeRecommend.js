@@ -6,6 +6,6 @@ const router = express.Router()
 
 const controllerRecommend = require('../controller/controllerRecommed')
 
-router.post('/recommend/createbox', checkAuth, controllerRecommend.createBoxRecommend)
+router.post('/recommend-createbox', checkAuth, controllerRecommend.createBoxRecommend)
 
 module.exports = router;

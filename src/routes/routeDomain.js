@@ -6,7 +6,9 @@ const checkAuth = require("../middleware/authentication")
 
 const controllerDomain = require('../controller/controllerDomain')
 
-router.post('/createdomain', checkAuth, controllerDomain.createDomain)
+router.post('/create-domain', checkAuth, controllerDomain.createDomain)
+
+router.get('/get-all-domain', controllerDomain.getAllDomain)
 
 
 module.exports = router;

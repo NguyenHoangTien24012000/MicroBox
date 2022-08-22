@@ -6,6 +6,6 @@ const checkAuth = require("../middleware/authentication")
 
 const controllerTypeBox = require('../controller/controllerTypeBox')
 
-router.post('/createtypebox', checkAuth, controllerTypeBox.createTypeBox)
+router.post('/create-typebox', checkAuth, controllerTypeBox.createTypeBox)
 
 module.exports = router;

@@ -32,3 +32,20 @@ exports.createAlgorithm = (req, res) => {
         })
     })
 }
+
+
+exports.getAllAlgorithm = (req, res) => {
+    Algorithm.findAll()
+        .then(result => {
+            res.status(200).json({
+                message: "Success!!",
+                data : result
+            })
+        })
+        .catch(error=>{
+            res.status(400).json({
+                message: "Failed!!",
+                error : error
+            })
+        })
+}

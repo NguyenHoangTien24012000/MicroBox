@@ -1,12 +1,10 @@
+const BoxIdDomain = require('../models/boxIdDomain')
 const User = require('../models/user')
-const Domain = require('../models/domain')
 
-
-exports.createDomain = (req,res) =>{
+exports.createBoxIdDomain = (req, res) => {
     let { idUser } = req;
 
     let { name, value } = req.body;
-
 
     User.findAll({
         where: {
@@ -14,14 +12,14 @@ exports.createDomain = (req,res) =>{
         }
     }).then((user) => {
         if (user[0].dataValues.roleid === 0) {
-            return Domain.create({
+            return BoxIdDomain.create({
                 name: name,
                 value: value
             })
         } else {
-           return new Promise((resolve, reject) => {
+            return new Promise((resolve, reject) => {
                 reject('You do not have access!')
-           })
+            })
         }
     }).then(result => {
         res.status(200).json({
@@ -36,19 +34,17 @@ exports.createDomain = (req,res) =>{
 }
 
 
-exports.getAllDomain = (req, res) =>{
-    Domain.findAll()
-    .then(result =>{
-        res.status(200).json({
-            message : 'Success!!',
-            data : result
+exports.getAllBoxIdDomain = (req, res) => {
+    BoxIdDomain.findAll()
+        .then(result => {
+            res.status(200).json({
+                message: "Success!!",
+                data: result
+            })
         })
-    })
-    .catch(error =>{
-        res.status(400).json({
-            message : "Failed!!",
-            error : error
-        })
-    })
+        .catch(error => ({
+            message: "Success!!",
+            error: error
+        }))
 }
 

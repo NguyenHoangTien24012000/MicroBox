@@ -14,6 +14,11 @@ const domainRoutes = require('./src/routes/routeDomain')
 const updateDatabaseRoutes = require('./src/routes/routeUpdateDatabase')
 const algorithmRoutes = require('./src/routes/routeAlgorithm')
 const recommendRoutes = require('./src/routes/routeRecommend')
+const boxIdDomainRoutes = require('./src/routes/routeBoxIdDomain')
+const boxTemplateDomainRoutes = require('./src/routes/routeTemplateDomain')
+
+
+
 
 // ENV
 require('dotenv').config();
@@ -44,6 +49,12 @@ app.use(algorithmRoutes)
 //Router Recommned
 app.use(recommendRoutes)
 
+
+//Router BoxIdDomain
+app.use(boxIdDomainRoutes)
+
+//Router 
+app.use(boxTemplateDomainRoutes)
 
 //config Database, router test
 app.use(updateDatabaseRoutes)

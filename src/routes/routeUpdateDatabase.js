@@ -4,6 +4,6 @@ const router = express.Router();
 
 const configDatabase = require('../config/configDatabase')
 
-router.get('/updatedatabase', configDatabase)
+router.get('/update-database', configDatabase)
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const sequelize = require('../util/connectDB');
 
-const Sequelize  = require('sequelize');
+const Sequelize = require('sequelize');
 
 
 const Recommend = sequelize.define('Recommend', {
@@ -16,49 +16,57 @@ const Recommend = sequelize.define('Recommend', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  idUser:{
+  idUser: {
     allowNull: false,
     type: Sequelize.INTEGER
   },
-  idTypeBox:{
-    allowNull:true,
+  idTypeBox: {
+    allowNull: true,
     type: Sequelize.INTEGER
   },
-  idDomain:{
-    allowNull:true,
+  idDomain: {
+    allowNull: true,
     type: Sequelize.INTEGER
   },
-  idAlgorithm:{
+  idAlgorithm: {
     allowNull: true,
-    type: Sequelize.INTEGER 
-  }, 
-  layout:{
+    type: Sequelize.INTEGER
+  },
+  layout: {
     allowNull: false,
     type: Sequelize.STRING
   },
-  item:{
+  item: {
     allowNull: false,
     type: Sequelize.STRING
   },
-  css:{
+  css: {
     allowNull: false,
     type: Sequelize.STRING
   },
-  javascript:{
+  javascript: {
     allowNull: true,
     type: Sequelize.STRING
   },
-  idBoxView:{
+  idBoxView: {
     allowNull: false,
     type: Sequelize.STRING
   },
-  offSetPage:{
+  offSetPage: {
     allowNull: true,
-    type:Sequelize.INTEGER
+    type: Sequelize.INTEGER
   },
-  numberPage:{
+  numberPage: {
     allowNull: true,
-    type:Sequelize.INTEGER
+    type: Sequelize.INTEGER
+  },
+  idTemplateDomain: {
+    allowNull: true,
+    type: Sequelize.INTEGER
+  },
+  idBoxidDomain: {
+    allowNull: true,
+    type: Sequelize.INTEGER
   },
   createdAt: {
     allowNull: false,
@@ -68,7 +76,7 @@ const Recommend = sequelize.define('Recommend', {
     allowNull: false,
     type: Sequelize.DATE
   },
-  
+
 });
 
 module.exports = Recommend

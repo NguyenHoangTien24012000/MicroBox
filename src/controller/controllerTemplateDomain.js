@@ -1,11 +1,10 @@
+const TemplateDomain = require('../models/templateDomain')
 const User = require('../models/user')
-const TypeBox = require('../models/typeBox')
 
-
-exports.createTypeBox = (req, res) => {
+exports.createTemplateDomain = (req, res) => {
     let { idUser } = req;
 
-    let { name } = req.body;
+    let { name, value } = req.body;
 
     User.findAll({
         where: {
@@ -13,13 +12,14 @@ exports.createTypeBox = (req, res) => {
         }
     }).then((user) => {
         if (user[0].dataValues.roleid === 0) {
-            return TypeBox.create({
-                name: name
+            return TemplateDomain.create({
+                name: name,
+                value: value
             })
         } else {
-           return new Promise((resolve, reject) => {
+            return new Promise((resolve, reject) => {
                 reject('You do not have access!')
-           })
+            })
         }
     }).then(result => {
         res.status(200).json({
@@ -31,20 +31,22 @@ exports.createTypeBox = (req, res) => {
             error: error
         })
     })
-
 }
 
-exports.getAllTypeBox = (req, res) =>{
-    TypeBox.findAll()
-    .then(result =>{
+
+exports.getAllTemplateDomain = (req,res) =>{
+    TemplateDomain.findAll()
+    .then(result=>{
         res.status(200).json({
-            message : "Success!",
+            message : "Success!!",
             data : result
         })
     })
-    .catch(error =>({
-        message : "Failed!",
-        error : error
-    }))
-}
+    .catch(error=>{
+        res.status(400).json({
+            message : "Failed!!",
+            error : error
+        })
+    })
 
+}

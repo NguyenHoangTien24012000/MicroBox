@@ -6,6 +6,8 @@ const checkAuth = require("../middleware/authentication")
 
 const controllerAlgorithms = require('../controller/controllerAlgorithms')
 
-router.post('/createAlgorithm', checkAuth, controllerAlgorithms.createAlgorithm)
+router.post('/create-algorithm', checkAuth, controllerAlgorithms.createAlgorithm)
+
+router.get('/get-all-algorithm', checkAuth, controllerAlgorithms.getAllAlgorithm)
 
 module.exports = router;
