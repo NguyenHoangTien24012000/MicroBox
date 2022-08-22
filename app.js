@@ -13,6 +13,7 @@ const typeBoxRoutes = require('./src/routes/routeTypeBox')
 const domainRoutes = require('./src/routes/routeDomain')
 const updateDatabaseRoutes = require('./src/routes/routeUpdateDatabase')
 const algorithmRoutes = require('./src/routes/routeAlgorithm')
+const recommendRoutes = require('./src/routes/routeRecommend')
 
 // ENV
 require('dotenv').config();
@@ -39,6 +40,10 @@ app.use(domainRoutes)
 
 //Router Algorithms
 app.use(algorithmRoutes)
+
+//Router Recommned
+app.use(recommendRoutes)
+
 
 //config Database, router test
 app.use(updateDatabaseRoutes)
