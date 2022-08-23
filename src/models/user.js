@@ -3,7 +3,7 @@ const sequelize = require('../util/connectDB');
 const Sequelize = require('sequelize');
 
 
-const User = sequelize.define('User', {
+const User = sequelize.define('user', {
   // Model attributes are defined here
   id: {
     allowNull: false,

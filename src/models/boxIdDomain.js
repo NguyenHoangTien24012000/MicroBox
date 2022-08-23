@@ -3,7 +3,7 @@ const sequelize = require('../util/connectDB');
 const Sequelize  = require('sequelize');
 
 
-const BoxIdDomain = sequelize.define('BoxIdDomain', {
+const BoxIdDomain = sequelize.define('boxiddomain', {
   // Model attributes are defined here
   id: {
     allowNull: false,

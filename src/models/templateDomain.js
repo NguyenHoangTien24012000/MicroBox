@@ -3,7 +3,7 @@ const sequelize = require('../util/connectDB');
 const Sequelize  = require('sequelize');
 
 
-const TemplateDomain = sequelize.define('TemplateDomain', {
+const TemplateDomain = sequelize.define('templatedomain', {
   // Model attributes are defined here
   id: {
     allowNull: false,

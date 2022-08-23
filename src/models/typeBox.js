@@ -3,7 +3,7 @@ const sequelize = require('../util/connectDB');
 const Sequelize  = require('sequelize');
 
 
-const TypeBox = sequelize.define('TypeBox', {
+const TypeBox = sequelize.define('typebox', {
   // Model attributes are defined here
   id: {
     allowNull: false,

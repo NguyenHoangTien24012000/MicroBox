@@ -3,7 +3,7 @@ const sequelize = require('../util/connectDB');
 const Sequelize = require('sequelize');
 
 
-const Recommend = sequelize.define('Recommend', {
+const Recommend = sequelize.define('recommend', {
   // Model attributes are defined here
   id: {
     allowNull: false,
